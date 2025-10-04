@@ -1,4 +1,77 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250542011  
+AD-SOYAD:  Ahmet Akif YILMAZ
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+🏠 Monopoly’de en iyi hamle seçimi
+
+BAŞLA
+
+Oyuncunun mevcut konumu, parası, mülkleri, rakiplerin durumu, zar sonucu alınır
+
+// 1. HAMLE BAŞLANGICI
+Zar at
+YeniKonum = MevcutKonum + ZarSonucu
+
+// 2. YENİ KONUMU DEĞERLENDİR
+GidilecekAlan = Tahta[ YeniKonum ]
+
+Eğer GidilecekAlan bir mülkse:
+    Eğer mülk satılık ise:
+        Eğer Oyuncunun parası mülk fiyatından fazla ise:
+            Mülk stratejik mi? (Renk setini tamamlıyor mu?)
+                EVET ise → Mülkü satın al
+                HAYIR ise → 
+                    Eğer kira potansiyeli yüksekse (merkez, turuncular, demiryolu vb):
+                        Satın al
+                    Değilse:
+                        Satın alma
+        Değilse:
+            Satın alma (yetersiz para)
+    Değilse (mülk bir rakibe aitse):
+        Kira öde
+        Eğer kira ödemesi sonrası para < 0:
+            Varlık sat, ipotek et veya iflas et
+
+Eğer GidilecekAlan "Şans" ya da "Topluluk Sandığı" ise:
+    Kart çek
+    Kartın gerektirdiği işlemi uygula
+
+Eğer GidilecekAlan "Vergi" alanıysa:
+    Vergiyi öde
+
+Eğer GidilecekAlan "Git Hapse" ise:
+    Oyuncu hapse gönderilir
+    Hapis durumuna geç
+
+// 3. YATIRIM STRATEJİSİ
+Eğer oyuncunun aynı renkten 2 veya 3 mülkü varsa:
+    Eğer Oyuncunun parası > minimum ev fiyatı * 1.5:
+        Ev satın al (öncelik kira geliri yüksek olanlarda)
+
+Eğer başka oyuncu o renkten mülk sahibiyse:
+    Takas stratejisi düşün
+
+// 4. TEKRAR EDEN STRATEJİK DEĞERLENDİRME
+Döngü başlat (her turda)
+    Oyuncunun parası kontrol edilir
+    Eğer para fazlaysa:
+        Yatırım fırsatları (ev alımı, ipotek kaldırma) değerlendirilir
+    Eğer para azsa:
+        Giderleri azaltma, gereksiz mülkleri ipotek etme, takasla nakit elde etme düşünülür
+Döngü bitir
+
+// 5. HAPSE GİRME DURUMU
+Eğer oyuncu hapisteyse:
+    Eğer "Çıkış kartı" varsa:
+        Kullan
+    Değilse 3 tur boyunca zar at
+        Her turda çift gelirse çık
+        3. turda çıkmak için para öde
+
+// 6. KAZANMA STRATEJİSİ
+Eğer rakip oyuncuların büyük kısmı ipotekli durumdaysa VE senin kira getirin yüksekse:
+    Ev/hotel yatırımlarını artır
+    Kritik alanları (turuncular, kırmızılar, demiryolları) güçlendir
+
+BİTİR
