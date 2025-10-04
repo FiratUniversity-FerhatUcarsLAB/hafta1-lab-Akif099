@@ -1,4 +1,64 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250542011        
+AD-SOYAD: Ahmet Akif YILMAZ
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:   
+
+🥚 Mükemmel omlet yapma
+
+BAŞLA
+
+// 1. GEREKLİ MALZEMELERİ KONTROL ET
+Eğer yumurta < 2 ise
+    Yaz "Yeterli yumurta yok. Omlet yapılamaz."
+    BİTİR
+Eğer süt yoksa
+    Yaz "Süt yok. Sade omlet yapılacak."
+Eğer tuz yoksa
+    Yaz "Tuz yok. Omlet biraz tatsız olabilir."
+Eğer yağ yoksa
+    Yaz "Yağ yok. Tavada yapışma olabilir. Devam etmek istiyor musun?"
+    Kullanıcıdan yanıt al → devamEt
+    Eğer devamEt == HAYIR ise
+        BİTİR
+
+// 2. MALZEMELERİ HAZIRLA
+Yumurtaları kaba kır
+Varsa süt ekle (2 yemek kaşığı)
+Tuz ekle (isteğe bağlı miktar)
+
+// 3. MALZEMELERİ KARIŞTIR
+Sayaç = 0
+Döngü başlat (Sayaç < 30 saniye)
+    Malzemeleri çırp
+    Sayaç = Sayaç + 5
+    5 saniye bekle
+Döngü bitir
+
+// 4. TAVAYI HAZIRLA
+Tavayı ocağa koy
+Yağ ekle (1 yemek kaşığı)
+Ocağı orta ateşte aç
+Bekle 1 dakika
+Eğer yağ kızmamışsa
+    30 saniye daha bekle
+
+// 5. OMLETİ PİŞİR
+Karışımı tavaya dök
+Sayaç = 0
+Döngü başlat (Sayaç < 5 dakika)
+    Eğer omletin altı kızardıysa VE üstü hala sıvıysa
+        Omleti dikkatlice çevir
+    Eğer her iki taraf da altın rengini aldıysa
+        Döngüden çık
+    Sayaç = Sayaç + 1 dakika
+    1 dakika bekle
+Döngü bitir
+
+// 6. SERVİS ET
+Omleti tabağa al
+Varsa üzerine maydanoz serpiştir
+İsteğe göre peynir, baharat ekle
+Yaz "Afiyet olsun! Omletiniz hazır."
+
+BİTİR
+
