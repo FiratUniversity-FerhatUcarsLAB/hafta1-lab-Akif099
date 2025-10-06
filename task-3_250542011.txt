@@ -1,5 +1,5 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250542011    
+AD-SOYAD: Ahmet Akif YILMAZ
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
 
