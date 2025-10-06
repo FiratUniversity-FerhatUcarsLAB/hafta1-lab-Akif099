@@ -1,0 +1,93 @@
+Öğrenci No:
+AD-SOYAD:
+
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+
+
+BAŞLA
+
+    // 1. Market envanterini tanımla (örnek veri)
+    envanter ← [
+        {ad: "Ekmek", kategori: "Gıda", fiyat: 5, stok: 20},
+        {ad: "Süt", kategori: "İçecek", fiyat: 10, stok: 15},
+        {ad: "Şampuan", kategori: "Kozmetik", fiyat: 30, stok: 8},
+        {ad: "Deterjan", kategori: "Temizlik", fiyat: 25, stok: 5},
+        {ad: "Elma", kategori: "Gıda", fiyat: 7, stok: 30}
+    ]
+
+    // 2. Kategori listelerini oluştur
+    gida ← []
+    icecek ← []
+    temizlik ← []
+    kozmetik ← []
+    diger ← []
+
+    // 3. Her ürünü kategorisine göre ayır
+    HER ürün İÇİN envanter'DE TEKRARLA
+        EĞER ürün.kategori = "Gıda" İSE
+            gida'ya EKLE(ürün)
+        DEĞİLSE EĞER ürün.kategori = "İçecek" İSE
+            icecek'e EKLE(ürün)
+        DEĞİLSE EĞER ürün.kategori = "Temizlik" İSE
+            temizlik'e EKLE(ürün)
+        DEĞİLSE EĞER ürün.kategori = "Kozmetik" İSE
+            kozmetik'e EKLE(ürün)
+        DEĞİLSE
+            diger'e EKLE(ürün)
+    TEKRAR SONU
+
+
+    // 4. Kategoriler içinde fiyatına göre sıralama (küçükten büyüğe)
+    HER kategori İÇİN [gida, icecek, temizlik, kozmetik, diger] LİSTESİNDE TEKRARLA
+        // Basit bubble sort algoritması
+        N ← kategori.UZUNLUK
+        i ← 0
+        TEKRAR i < N - 1 İKEN
+            j ← 0
+            TEKRAR j < N - i - 1 İKEN
+                EĞER kategori[j].fiyat > kategori[j+1].fiyat İSE
+                    YER DEĞİŞTİR(kategori[j], kategori[j+1])
+                SON
+                j ← j + 1
+            TEKRAR SONU
+            i ← i + 1
+        TEKRAR SONU
+    TEKRAR SONU
+
+
+    // 5. Kullanıcıdan ürün adı al ve arama yap
+    YAZDIR("Aramak istediğiniz ürünün adını giriniz: ")
+    aranan ← GİRİŞ()
+
+    bulundu ← YANLIŞ
+
+    HER ürün İÇİN envanter'DE TEKRARLA
+        EĞER ürün.ad = aranan İSE
+            YAZDIR("Ürün bulundu → " + ürün.ad + 
+                    ", Kategori: " + ürün.kategori + 
+                    ", Fiyat: " + ürün.fiyat + 
+                    ", Stok: " + ürün.stok)
+            bulundu ← DOĞRU
+            DUR
+        SON
+    TEKRAR SONU
+
+    EĞER bulundu = YANLIŞ İSE
+        YAZDIR("Aranan ürün bulunamadı.")
+    SON
+
+
+    // 6. Tüm kategorileri sıralı biçimde göster
+    YAZDIR("— GIDA —")
+    YAZDIR(gida)
+    YAZDIR("— İÇECEK —")
+    YAZDIR(icecek)
+    YAZDIR("— TEMİZLİK —")
+    YAZDIR(temizlik)
+    YAZDIR("— KOZMETİK —")
+    YAZDIR(kozmetik)
+    YAZDIR("— DİĞER —")
+    YAZDIR(diger)
+
+BİTİR
