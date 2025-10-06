@@ -1,4 +1,79 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250542011  
+AD-SOYAD:  Ahmet Akif YILMAZ
+
+
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+    // 1. Durma Koşulu (Base Case)
+    // Listede sadece bir kişi kaldıysa, kalan tüm parçayı ona ver.
+    EĞER Kisi_Listesi'ndeki kişi sayısı == 1 İSE
+        SON_KISI = Kisi_Listesi'ndeki tek kişi
+        VER (Pasta_Parcasi, SON_KISI)
+        DÖN (İşlem Tamam)
+    SON
+
+    // 2. Böl (Divide) ve Hazırlık
+
+    // a. Bir kişi "kesen" olarak atanır.
+    KESEN = Kisi_Listesi'nden rastgele seçilen bir kişi (örneğin ilk kişi)
+    
+    // b. Geri kalan kişiler "seçici" veya "azaltıcı" (diminisher) olur.
+    AZALTICI_LISTESI = Kisi_Listesi - KESEN
+
+    // 3. Fethet (Conquer) ve Paylaşım Döngüsü
+
+    // Kesen, pastayı N eşit parçaya böler (Kesen'in kendi değerlemesine göre).
+    KESEN, Pastayi kendi değerlemesine göre N adet eşit parçaya (P1, P2, ..., PN) böler.
+    
+    // Herkesin en az 1/N hissesini alacağı adil bir seçim döngüsü başlar.
+    
+    // Döngü Başlangıcı: Kesen'den başlayarak saat yönünde (veya rastgele) sıra belirlenir.
+    SIRALI_KISILER = (KESEN) + (AZALTICI_LISTESI) // Toplam N kişi
+
+    HER KISI K_i, SIRALI_KISILER içinde İÇİN:
+        
+        EĞER K_i == KESEN İSE
+            // Kesen, şimdilik parça seçmez.
+            DEVAM ET
+        SON
+
+        // Azaltma Kuralı (Koşullu Durum):
+        // K_i (azaltıcı) kendisine ayrılan parça (P_i) üzerinde işlem yapar.
+        
+        EĞER K_i, mevcut P_i parçasını kendi değerlemesine göre (1/N)'den AZ görüyor İSE
+            // Yapılacak bir şey yok, K_i bu parçayı istemiyor.
+            DEVAM ET
+        DEĞİLSE EĞER K_i, P_i parçasını kendi değerlemesine göre (1/N)'den BÜYÜK görüyor İSE
+            // K_i, parça üzerinde adil hissesi (1/N) kalacak şekilde parçayı 'azaltır' (keser).
+            P_i = K_i'nin adil hissesi kadar bıraktığı parça.
+            KALAN_PARCA = Kalan kesilen parça.
+            
+            // Kalan parçayı ana pastaya ekle. Bu, Böl ve Fethet'in 'Geri Bölme' adımıdır.
+            ANA_PASTA = ANA_PASTA + KALAN_PARCA 
+        SON
+
+    SON_HER
+
+    // 4. Birleştir (Combine) / Nihai Seçim
+
+    // a. Her bir kişiye (N-1 kişi) bir parça atanır.
+    HER KISI K_i, SIRALI_KISILER İÇİN:
+        // Herkes, mevcut parçalardan (azaltılmış veya azaltılmamış) kendisine en değerli geleni seçer.
+        SEÇİLEN_PARCA = K_i'nin kendi değerlemesine göre en değerli bulduğu PARÇA
+        VER (SEÇİLEN_PARCA, K_i)
+        KALAN_PARCALAR = KALAN_PARCALAR - SEÇİLEN_PARCA
+    SON_HER
+    
+    // b. Geriye kalan parçalar, yeni bir küçük pasta oluşturur.
+    YENI_PASTA = KALAN_PARCALAR
+
+    // Kalan parçaları, kalan kişiler arasında bölüştürmek için algoritmayı tekrar çağır.
+    YENI_KISI_LISTESI = Kisi_Listesi - Paylaşımı tamamlanmış kişiler.
+
+    // Özyinelemeli Çağrı (Recursive Call):
+    EĞER YENI_KISI_LISTESI boş değil İSE
+        Adil_Paylasim_Bol_Ve_Fethet (YENI_PASTA, YENI_KISI_LISTESI)
+    SON
+
+SON_FONKSİYON
