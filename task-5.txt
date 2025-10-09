@@ -1,4 +1,47 @@
-Öğrenci No:
-AD-SOYAD:
-
+Öğrenci No: 250542011 
+AD-SOYAD: Ahmet Akif YILMAZ
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+ALGORITMA KahveHazirla
+    Başla
+        // 1. Malzemeleri kontrol et
+        SU = kontrolEt("su")
+        KAHVE = kontrolEt("kahve")
+        SUT = kontrolEt("süt")
+        SEKER = kontrolEt("şeker")
+
+        // 2. Eksik malzeme var mı kontrol et
+        EKSİK_MALZEME = false
+        Eğer SU = yok ise
+            yaz("Su eksik!")
+            EKSİK_MALZEME = true
+        Eğer KAHVE = yok ise
+            yaz("Kahve eksik!")
+            EKSİK_MALZEME = true
+        Eğer SUT = yok ise
+            yaz("Süt eksik!")
+            EKSİK_MALZEME = true
+        Eğer SEKER = yok ise
+            yaz("Şeker eksik!")
+            EKSİK_MALZEME = true
+
+        // 3. Malzeme eksikse işlemi durdur
+        Eğer EKSİK_MALZEME = true ise
+            yaz("Eksik malzemeleri tamamlayın.")
+            Bitir
+        Sonra
+
+        // 4. Kahve makinesini başlat
+        yaz("Kahve makinesi başlatılıyor...")
+        MAKINE = calistirMakine()
+
+        // 5. Kahve hazır olana kadar bekle
+        DURUM = kontrolEtMakine(MAKINE)
+        Tekrar
+            Eğer DURUM = hazır ise
+                yaz("Kahve hazır! Afiyet olsun.")
+                Bitir
+            Değilse
+                bekle(10 saniye)
+                DURUM = kontrolEtMakine(MAKINE)
+        Döngü Sonu
+    Bitir
